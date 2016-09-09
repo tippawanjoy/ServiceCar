@@ -1,7 +1,13 @@
 package nrru.chumsila.tippawan.servicecar;
 
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,9 +18,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    // นี้คือการประกาศตัวแปล
     private GoogleMap mMap;
+    private LocationManager locationManager; // locationManager = ชื่อตัวแปล
+    private Criteria criteria;
+    private double userLatADouble, userLngADouble; // ตัวแปลรัดติจูด,ลองติจูด
+
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_layout);
@@ -22,19 +34,98 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // กำหนดค่าเริ่มต้นของการหาพิกัด
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); // แสดงพิกัดให้คนอื่นได้เห็น
+        criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE); //แสดงการค้นหาอย่างละเอียด 300m
+        criteria.setAltitudeRequired(false); // ไม่ต้องการค้นหา ความสูงจากพื้นโลก Z
+        criteria.setBearingRequired(false); // ไม่ต้องการค้นหา ความสูงจากพื้นโลก Z
+
+    } // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
+
+
+
+    // เปิดแอพจะให้ทำอะไร
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+ // นี่คือ รัดติจูด ลองติจูด nrru
+        userLatADouble = 14.984872;
+        userLngADouble = 102.113251;
+
+        Location networkLocation = myFindLocation(LocationManager.NETWORK_PROVIDER); //เวลาค้นหาให้ถามผู้บริการทางอินเตอร์เน็ต ว่าคุณอยู่ที่ไหน?
+        if (networkLocation != null) {
+            userLatADouble = networkLocation.getLatitude();
+            userLngADouble = networkLocation.getLongitude();
+        }
+
+        Location gpsLocation = myFindLocation(LocationManager.GPS_PROVIDER);
+        if (gpsLocation != null) {
+            userLatADouble = gpsLocation.getLatitude();
+            userLngADouble = gpsLocation.getLongitude();
+        }
+
+        //
+        Log.d("CarV1","Lat ==>" + userLatADouble);
+        Log.d("CarV1","Lng ==>" + userLngADouble);
+
+
+    }  //
+
+    // ถ้าปิดแอพให้ทำการปิดเซอร์วิท
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        locationManager.removeUpdates(locationListener);
+    }
+
+    public Location myFindLocation(String strProvider) {
+
+        Location location = null;
+
+        if (locationManager.isProviderEnabled(strProvider)) {
+
+            locationManager.requestLocationUpdates(strProvider,1000,10,locationListener);
+            location =locationManager.getLastKnownLocation(strProvider);
+        }
+
+        return location;
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
+ // โค้ด ถ้านำโทรสับขยับที่ได้
+    public LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+
+          userLatADouble =location.getLatitude();
+            userLatADouble=location.getLatitude();
+
+
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
+
     @Override
+
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
@@ -42,5 +133,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-}
+    } // ทำกันแสดงแผนที่
+} // นี้คือคลาสหลัก
