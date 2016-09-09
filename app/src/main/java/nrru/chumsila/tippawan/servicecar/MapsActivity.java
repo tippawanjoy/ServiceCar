@@ -27,7 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
 
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_layout);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -97,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
- // โค้ด ถ้านำโทรสับขยับที่ได้
+ // โค้ด ถ้านำโทรสับขยับ จากเกิดผลลัพธ์ จะแสดงที่ตั้งใน ณ ตอนนั้น
     public LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
@@ -129,9 +129,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //ตั้งค่ากึ่งกลางของแผนที่
+        LatLng nserLatLng = new LatLng(userLatADouble,userLngADouble);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nserLatLng, 16));
+
+
     } // ทำกันแสดงแผนที่
 } // นี้คือคลาสหลัก
