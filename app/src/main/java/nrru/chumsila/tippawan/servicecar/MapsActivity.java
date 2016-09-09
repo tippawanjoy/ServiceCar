@@ -23,7 +23,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private LocationManager locationManager; // locationManager = ชื่อตัวแปล
     private Criteria criteria;
-    private double userLatADouble, userLngADouble; // ตัวแปลรัดติจูด,ลองติจูด
+    private double userLatADouble, userLngADouble;// ตัวแปลรัดติจูด,ลองติจูด
+    private MyManage myManage;
 
 
     @Override
@@ -31,6 +32,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) { // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_layout);
+
+        myManage = new MyManage(this);
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
