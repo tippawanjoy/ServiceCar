@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -124,6 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
+
+
     @Override
 
     public void onMapReady(GoogleMap googleMap) {
@@ -132,6 +135,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //ตั้งค่ากึ่งกลางของแผนที่
         LatLng nserLatLng = new LatLng(userLatADouble,userLngADouble);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nserLatLng, 16));
+        mMap.addMarker(new MarkerOptions()
+        .position(nserLatLng)
+        .icon(BitmapDescriptorFactory.fromResource(R.drawable.friend)));
 
 
     } // ทำกันแสดงแผนที่
