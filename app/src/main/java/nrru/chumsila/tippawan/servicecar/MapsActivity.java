@@ -65,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 MODE_PRIVATE, null);
         sqLiteDatabase.delete(MyManage.shop_table, null, null);
 
+
     }
 
     private void checkSQLite() {
