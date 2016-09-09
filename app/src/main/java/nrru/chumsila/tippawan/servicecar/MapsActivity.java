@@ -1,6 +1,8 @@
 package nrru.chumsila.tippawan.servicecar;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -35,6 +37,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         myManage = new MyManage(this);
 
+        checkSQLite();
+
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -51,6 +55,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     } // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
 
+    private void checkSQLite() {
+
+        try {
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE,null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM shopTEBLE",null);
+            cursor.moveToFirst();
+
+            Log.d("CarV2", "Count of Cursor ==>"+ cursor.getCount());
+
+        } catch (Exception e) {
+            Log.d("CarV2", "e ==>"+ e.toString());
+        }
+
+
+    }//เช็ค SQL
 
 
     // เปิดแอพจะให้ทำอะไร
