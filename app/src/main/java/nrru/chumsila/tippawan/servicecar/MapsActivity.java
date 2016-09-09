@@ -37,6 +37,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         myManage = new MyManage(this);
 
+        // ทดสอบแวลู้
+        //myManage.addValue("shop","add","phone","image","icon","lat","lng");
+
+        deleteAllSQLite();
+
         checkSQLite();
 
 
@@ -54,6 +59,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         criteria.setBearingRequired(false); // ไม่ต้องการค้นหา ความสูงจากพื้นโลก Z
 
     } // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
+
+    private void deleteAllSQLite() {
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        sqLiteDatabase.delete(MyManage.shop_table, null, null);
+    }
 
     private void checkSQLite() {
 
