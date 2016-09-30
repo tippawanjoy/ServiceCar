@@ -130,11 +130,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MyManage myManage = new MyManage(context);
                     myManage.addValue(strShop,strAddress,strPhone,strService,strImage,strIcon,strLat,strLng);
 
-                    // มาคส์จุดตำแหน่งของร้าน , มี ชื่อร้าน,เบอร์โทรศัพท์
+                    MapIcon mapIcon = new MapIcon(context,Integer.parseInt(strIcon));
+                    Log.d("CarV4", "Icon ==> " + mapIcon.showIcon());
+
+                    // มาคส์จุดตำแหน่งของร้าน , มี ชื่อร้าน,เบอร์โทรศัพท์,iconร้าน
                     mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(Double.parseDouble(strLat),Double.parseDouble(strLng)))
-                    .title(strShop)
-                    .snippet(strPhone));
+                            .position(new LatLng(Double.parseDouble(strLat), Double.parseDouble(strLng)))
+                            .title(strShop)
+                            .snippet(strPhone)
+                            .icon(BitmapDescriptorFactory.fromResource(mapIcon.showIcon())));
 
 
 

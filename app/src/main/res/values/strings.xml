@@ -7,4 +7,5 @@
 
     <string name="service">บริการ</string>
     <string name="address">ที่อยู่</string>
+    <string name="title_activity_detail">Map</string>
 </resources>

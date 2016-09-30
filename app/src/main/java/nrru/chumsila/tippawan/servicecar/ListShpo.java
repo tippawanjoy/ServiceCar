@@ -1,9 +1,12 @@
 package nrru.chumsila.tippawan.servicecar;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class ListShpo extends AppCompatActivity {
@@ -57,6 +60,27 @@ public class ListShpo extends AppCompatActivity {
 
             MyAdapter myAdapter =new MyAdapter(this,shopStrings,phoneStrings,serviceStrings,addressStrings,imageStrings);
             listView.setAdapter(myAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    String[] strings = new String[8];
+                    strings[0] = shopStrings[i];
+                    strings[1] = addressStrings[i];
+                    strings[2] = phoneStrings[i];
+                    strings[3] = serviceStrings[i];
+                    strings[4] = imageStrings[i];
+                    strings[5] = iconStrings[i];
+                    strings[6] = lngStrings[i];
+                    strings[7] = lngStrings[i];
+
+                    Intent intent = new Intent(ListShpo.this, DetailActivity.class);
+                    intent.putExtra("Shop", strings);
+                    startActivity(intent);
+
+                }   // onItemClick
+            });
 
 
 
