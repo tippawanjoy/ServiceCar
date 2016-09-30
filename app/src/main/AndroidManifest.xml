@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nrru.chumsila.tippawan.servicecar">
 
-    <!--โค้ด การเปิดใช้แผนที่และอินเตอร์เน็ต-->
+    <!-- โค้ด การเปิดใช้แผนที่และอินเตอร์เน็ต -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.google.android.provider.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.provider.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -36,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListShpo" />
+        <activity android:name=".DetailShop" />
+        <activity android:name=".SearchShop"></activity>
     </application>
 
 </manifest>

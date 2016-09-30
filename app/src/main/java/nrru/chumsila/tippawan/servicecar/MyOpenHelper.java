@@ -18,6 +18,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{// ชื่อเม็ด�
             "Shop text," +
             "Address text," +
             "Phone text," +
+            "Service text," +
             "Image text," +
             "Icon text," +
             "Lat text," +

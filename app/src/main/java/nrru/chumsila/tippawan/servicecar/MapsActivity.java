@@ -111,15 +111,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String strShop = jsonObject.getString(MyManage.column_Shop);
                     String strAddress =jsonObject.getString(MyManage.column_Address);
                     String strPhone =jsonObject.getString(MyManage.column_Phone);
+                    String strService =jsonObject.getString(MyManage.column_Service);
                     String strImage =jsonObject.getString(MyManage.column_Image);
                     String strIcon =jsonObject.getString(MyManage.column_Icon);
                     String strLat =jsonObject.getString(MyManage.column_Lat);
                     String strLng =jsonObject.getString(MyManage.column_Lng);
 
                     MyManage myManage = new MyManage(context);
-                    myManage.addValue(strShop,strAddress,strPhone,strImage,strIcon,strLat,strLng);
+                    myManage.addValue(strShop,strAddress,strPhone,strService,strImage,strIcon,strLat,strLng);
 
-                }   //ตัวที่ใช้ในการเปลี่ยน String ให้เป็นประโยคสั่นๆ
+                    // มาคส์จุดตำแหน่งของร้าน , มี ชื่อร้าน,เบอร์โทรศัพท์
+                    mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Double.parseDouble(strLat),Double.parseDouble(strLng)))
+                    .title(strShop)
+                    .snippet(strPhone));
+
+
+
+
+
+
+
+
+                }   // for ตัวที่ใช้ในการเปลี่ยน String ให้เป็นประโยคสั่นๆ
 
                 checkSQLite();
 

@@ -17,6 +17,7 @@ public class MyManage {
     public static final String column_Shop = "Shop";
     public static final String column_Address = "Address";
     public static final String column_Phone = "Phone";
+    public static final String column_Service = "Service";
     public static final String column_Image = "Image";
     public static final String column_Icon = "Icon";
     public static final String column_Lat = "Lat";
@@ -34,6 +35,7 @@ public class MyManage {
     public long addValue(String strShop,
                          String strAddress,
                          String strPhone,
+                         String strService,
                          String strImage,
                          String strIcon,
                          String strLat,
@@ -43,6 +45,7 @@ public class MyManage {
         contentValues.put(column_Shop, strShop);
         contentValues.put(column_Address, strAddress);
         contentValues.put(column_Phone, strPhone);
+        contentValues.put(column_Service, strService);
         contentValues.put(column_Image, strImage);
         contentValues.put(column_Icon, strIcon);
         contentValues.put(column_Lat, strLat);
