@@ -72,7 +72,7 @@ public class ListShpo extends AppCompatActivity {
                     strings[3] = serviceStrings[i];
                     strings[4] = imageStrings[i];
                     strings[5] = iconStrings[i];
-                    strings[6] = lngStrings[i];
+                    strings[6] = latStrings[i];
                     strings[7] = lngStrings[i];
 
                     Intent intent = new Intent(ListShpo.this, DetailActivity.class);
