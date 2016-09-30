@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Service car</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Service Cars</string>
 
-    <string name="listview">ชื่อร้าน</string>
+    <string name="listview">รายชื่อร้าน</string>
+    <string name="search">ค้นหา</string>
 </resources>

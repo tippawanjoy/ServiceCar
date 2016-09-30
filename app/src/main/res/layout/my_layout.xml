@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@drawable/bg17">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/text19">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,7 +12,7 @@
         android:textSize="@dimen/h1"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        android:textColor="@color/aText" />
+        android:textColor="@android:color/holo_blue_dark" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -23,16 +24,23 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Search"
+            android:text="ค้นหา"
             android:id="@+id/button"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/bright_foreground_disabled_material_light"
+            android:textColor="@color/abc_secondary_text_material_dark"
+            android:textSize="20dp"
+            android:singleLine="false" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/listview"
             android:id="@+id/button2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="@color/abc_secondary_text_material_dark"
+            android:background="@color/bright_foreground_disabled_material_light" />
     </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"

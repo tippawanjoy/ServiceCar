@@ -7,6 +7,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -42,7 +49,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         deleteAllSQLite();
 
-        checkSQLite();
+
+
+        //ดึงฐานมูลมาเป็นSQL
+        SynData synData = new SynData(this);
+        synData.execute();
+
+
+
 
 
 
@@ -59,6 +73,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         criteria.setBearingRequired(false); // ไม่ต้องการค้นหา ความสูงจากพื้นโลก Z
 
     } // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
+
+
+    private class SynData extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+//ป้องกันการErroe
+            try {
+
+                OkHttpClient okHttpClient=new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                Request request =builder.url(urILSON).build();
+                Response response = okHttpClient.newCall(request).execute();
+                return response.body().string();
+
+            } catch (Exception e) {
+                Log.d("CarV3","e doInBack ==>" + e.toString());
+                return  null;
+            }
+
+
+        }//เม็ดตอดเบื้องหลัง
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            Log.d("CarV3","JSON ==>"+s);
+
+            try {
+
+                JSONArray jsonArray = new JSONArray(s);
+
+                for (int i=0;i<jsonArray.length();i+=1) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    String strShop = jsonObject.getString(MyManage.column_Shop);
+                    String strAddress =jsonObject.getString(MyManage.column_Address);
+                    String strPhone =jsonObject.getString(MyManage.column_Phone);
+                    String strImage =jsonObject.getString(MyManage.column_Image);
+                    String strIcon =jsonObject.getString(MyManage.column_Icon);
+                    String strLat =jsonObject.getString(MyManage.column_Lat);
+                    String strLng =jsonObject.getString(MyManage.column_Lng);
+
+                    MyManage myManage = new MyManage(context);
+                    myManage.addValue(strShop,strAddress,strPhone,strImage,strIcon,strLat,strLng);
+
+                }   //ตัวที่ใช้ในการเปลี่ยน String ให้เป็นประโยคสั่นๆ
+
+                checkSQLite();
+
+            } catch (Exception e) {
+                Log.d("CarV3", "e onPost ==> " + e.toString());
+            }
+
+
+
+        }//ออนโพส
+
+        //ประกาศตัวแปล
+        private Context context;
+        private  static  final  String urILSON ="http://swiftcodingthai.com/joy1/get_data.php";
+        public SynData(Context context) {
+            this.context = context;
+        }
+    }
+
 
     private void deleteAllSQLite() {
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
