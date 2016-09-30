@@ -1,6 +1,7 @@
 package nrru.chumsila.tippawan.servicecar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
@@ -11,6 +12,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -73,6 +75,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         criteria.setBearingRequired(false); // ไม่ต้องการค้นหา ความสูงจากพื้นโลก Z
 
     } // เม็ดตอด แสดงขั้นพื้นฐาน (หลัก)
+
+    public  void clickListShpo(View view){
+        startActivity(new Intent(MapsActivity.this, ListShpo.class));
+    }
+    public void clickSearchShop(View view){
+        startActivity(new Intent(MapsActivity.this,SearchShop.class));
+    }
+
 
 
     private class SynData extends AsyncTask<Void, Void, String> {

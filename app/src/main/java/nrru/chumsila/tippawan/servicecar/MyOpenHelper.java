@@ -13,7 +13,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{// ชื่อเม็ด�
 
     public static final String database_name = "ServiceCar.db";
     private static final int database_version = 1;
-    private static final String create_shop_table = "create table shopTEBLE(" +
+    private static final String create_shop_table = "create table shopTABLE(" +
             "_id integer primary key," +
             "Shop text," +
             "Address text," +

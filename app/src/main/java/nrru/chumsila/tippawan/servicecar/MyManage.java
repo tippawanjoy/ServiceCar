@@ -12,7 +12,7 @@ public class MyManage {
     private MyOpenHelper myOpenHelper;
     private SQLiteDatabase sqLiteDatabase;
 
-    public static final String shop_table = "shopTEBLE";
+    public static final String shop_table = "shopTABLE";
     public static final String column_id = "id";
     public static final String column_Shop = "Shop";
     public static final String column_Address = "Address";
