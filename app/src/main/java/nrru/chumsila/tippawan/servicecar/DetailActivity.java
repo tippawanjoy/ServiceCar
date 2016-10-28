@@ -2,6 +2,7 @@ package nrru.chumsila.tippawan.servicecar;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,6 +47,10 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }// เม็ตตอด
+
+    public void clickBackDetail(View view){
+        finish();
+    }
 
 
 

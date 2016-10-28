@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/text1">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -27,7 +28,7 @@
                 android:id="@+id/textView2"
                 android:textSize="@dimen/h1"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/wallet_link_text_light" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
                 android:id="@+id/textView3"
                 android:textSize="@dimen/h2"
                 android:textStyle="italic"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/wallet_link_text_light" />
         </LinearLayout>
 
     </LinearLayout>
@@ -49,7 +50,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/wallet_link_text_light"
         android:text="@string/service" />
 
     <TextView
@@ -60,7 +61,7 @@
         android:textSize="@dimen/h2"
         android:textStyle="italic"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/button_material_dark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/wallet_link_text_light" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,5 +82,5 @@
         android:textSize="@dimen/h2"
         android:textStyle="italic"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/button_material_dark" />
 </LinearLayout>
